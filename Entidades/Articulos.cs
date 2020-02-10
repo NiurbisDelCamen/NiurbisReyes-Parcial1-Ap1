@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Parcial1_Niurbis.Entidades
 {
-    public class Entidades
+    public class Articulos
     {
 
     }
