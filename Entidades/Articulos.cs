@@ -6,6 +6,6 @@ namespace Parcial1_Niurbis.Entidades
 {
     public class Articulos
     {
-
+        public int MyProperty { get; set; }
     }
 }
