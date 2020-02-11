@@ -11,12 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="DAL\Scripts\" />
     <Folder Include="Resources\" />
     <Folder Include="UI\Consultas\" />
     <Folder Include="UI\Reportes\" />
-    <Folder Include="UI\Registros\" />
   </ItemGroup>
 
 </Project>
