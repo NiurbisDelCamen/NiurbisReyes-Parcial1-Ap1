@@ -1,7 +1,7 @@
 create database ArticulosDb
 use ArticulosDb
 
-create table Articulos
+create table ArticulosDb
 (
 ProductoId int primary key identity,
 Descripcion varchar(30),

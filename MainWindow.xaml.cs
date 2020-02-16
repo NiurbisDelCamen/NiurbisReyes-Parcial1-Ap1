@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Parcial1_Niurbis.UI.Registros;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,15 @@ namespace Parcial1_Niurbis
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void ArticulosButton_Click(object sender, RoutedEventArgs e)
+        {
+            rRegistroDeProductos Productos = new rRegistroDeProductos();
+            Productos.Show();
+
+
+
         }
     }
 }

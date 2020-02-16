@@ -96,71 +96,72 @@ namespace Parcial1_Niurbis.UI.Registros
         {
             Articulos articulos;
             bool paso = false;
+
             if (!Validar())
                 return;
+
             articulos = LlenaClase();
 
             if ((string.IsNullOrWhiteSpace(ProductoIdTextBox.Text) || ProductoIdTextBox.Text == "0"))
                 paso = ArticulosBLL.Guardar(articulos);
 
-                else
+            else
+            {
+                if (!ExisteEnLaBaseDeDatos())
                 {
-                    if(!ExisteEnLaBaseDeDatos())
-                    {
-                        MessageBox.Show("No se puede modificar una persona que no existe","Fallo",MessageBoxButton.OK,MessageBoxImage.Error);
-                        return;
-                    }
-                    paso = ArticulosBLL.Modificar(articulos);
-                    if(paso)
-                    {
-                        Limpiar();
-                        MessageBox.Show("Guardado","Exito",MessageBoxButton.OK,MessageBoxImage.Information) ;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No fue posible Guardar","Fallo",MessageBoxButton.OK,MessageBoxImage.Error);
-                    }
-
+                    MessageBox.Show("No se puede modificar un articulo que no existe", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
+                paso = ArticulosBLL.Modificar(articulos);
+            }
+
+            if (paso)
+            {
+                Limpiar();
+                MessageBox.Show("Guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("No fue posible Guardar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+            
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Clear");
             int id;
-            int.TryParse(ProductoIdTextBox.Text, out id);
+            id = Convert.ToInt32(ProductoIdTextBox.Text);
             Limpiar();
             if (ArticulosBLL.Eliminar(id))
-                MessageBox.Show("Eliminado","Exito",MessageBoxButton.OK,MessageBoxImage.Information);
+            {
+                MessageBox.Show("Eliminado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
             else
             {
-                MessageBox.Show(ProductoIdTextBox.Text,"No se puede Eliminar un Articulo que no existe");
+                MessageBox.Show(ProductoIdTextBox.Text, "No se puede eliminar un articulo que no existe");
             }
         }
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
-            int id;
-            Articulos articulos = new Articulos();
-            int.TryParse(ProductoIdTextBox.Text, out id);
-               Limpiar();
-            articulos = ArticulosBLL.Buscar(id)
-                if(articulos!=null)
-            {
-                MessageBox.Show("Articulo Encontrado");
-                LlenaCampo(articulos);
-            }
-                else
-            {
-                MessageBox.Show("Artiuclo No Encontrado");
-            }
+            
+                    int id;
+                    Articulos articulos = new Articulos();
+                    int.TryParse(ProductoIdTextBox.Text, out id);
+                    articulos = ArticulosBLL.Buscar(id);
+                    if (articulos != null)
+                    {
+                        MessageBox.Show("Articulo Encontrado");
+                        LlenaCampo(articulos);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Articulo No Encontrado");
+                    }
 
-        }
-
-        private void ExistenciaTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
             
         }
     }
+
+
 }

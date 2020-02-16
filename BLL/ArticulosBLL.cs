@@ -16,7 +16,7 @@ namespace Parcial1_Niurbis.BLL
 
             try
             {
-                if (db.Articulo.Add(articulos) != null)
+                if (db.Articulos.Add(articulos) != null)
                     paso = db.SaveChanges() > 0;
             }catch(Exception)
             {
@@ -50,9 +50,9 @@ namespace Parcial1_Niurbis.BLL
             Contexto db = new Contexto();
             try
             {
-                var eliminar = db.Articulo.Find(id);
+                var eliminar = db.Articulos.Find(id);
                 db.Entry(eliminar).State = EntityState.Deleted;
-                paso = (db.SaveChanges() > 0);
+                paso = db.SaveChanges() > 0;
             }catch(Exception)
             {
                 throw;
@@ -68,7 +68,7 @@ namespace Parcial1_Niurbis.BLL
             Articulos articulo = new Articulos();
             try
             {
-                articulo = db.Articulo.Find(id);
+                articulo = db.Articulos.Find(id);
             }catch(Exception)
             {
                 throw;
